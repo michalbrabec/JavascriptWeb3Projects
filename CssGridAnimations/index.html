@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.grd {
+  background-color: pink;
+  display: grid;
+  grid-template-columns: 100px 100px;
+}
+
+div.test {
+  width: 100px;
+  height: 100px;
+  border: solid;
+  border-color: black;
+  border-radius:20px;
+  background-color: red;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes example {
+  0%   {background-color: red;}
+  25%  {background-color: yellow;}
+  50%  {background-color: blue;}
+  100% {background-color: red;}
+}
+</style>
+</head>
+<body>
+
+<h1 class="test">CSS Animation</h1>
+
+<div class="grd">
+    <div style="animation-delay: 1s;" class="test"></div>
+    <div style="animation-delay: 2s;" class="test"></div>
+    <div style="animation-delay: 3s;" class="test"></div>
+    <div style="animation-delay: 4s;" class="test"></div>
+</div>
+
+<p><b>Note:</b> When an animation is finished, it goes back to its original style.</p>
+
+</body>
+</html>
+
+

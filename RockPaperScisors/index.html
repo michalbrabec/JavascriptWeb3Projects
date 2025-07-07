@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #f0f0f0;
+                font-family: Arial, sans-serif;
+            }
+            button.cls1 {
+                background-color: yellow;
+            }
+            button.cls2 {
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <button class="cls1" onclick="test(event)">TEST</button>
+        <script>
+            function test(event) {
+                if (event.target.classList.contains("cls2")) {
+                    event.target.classList.remove("cls2")
+                }
+                else {
+                    event.target.classList.add("cls2")
+                }
+            }
+        </script>
+    </body>
+</html>
