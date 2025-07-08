@@ -77,20 +77,22 @@
   - functions are values, they can be stored in variables and returned from other functions
   - closure means that the function has access to all values that were available when it was created
     - for example the returned lambda retains `x` even after `func` completes and `x` goes out of scope `function func(x) { return a => a*x }`
-  - `const fun = function(a, b = 1) { return a*b; }` 
+  - `const fun = function(a, b = 1) { return a*b; }`
     - anonymous function
     - 2 params, 2nd has a default value
     - returns a result of the expression
     - sets `this` to the enclosing object or `undefined` when used in a pure function
-  - `const fun = function func1(a, b = 1) { return 5; }` - named function
-  - `const fun = (a, b = 1) => { return 5; }` - arrow function
+  - `const fun = function func1(a, b = 1) { return 5; }`
+    - named function
+  - `const fun = (a, b = 1) => { return 5; }` 
+    - arrow function
     - does not change `this`, can be used in methods
   - `const fun = a => 5*a;` - shorthand definition
     - parameter parenthases can be skipped if there is only 1 param
     - curly brackets and `return` can be skipped if there is only 1 line returning a value
-  - `function func1(a, b = 1) => { return 5; }`
+  - `function func1(a, b = 1) { return 5; }`
     - C-like function definition
-    - same as the others
+    - benefits from hoisting - it can be used before it is defined, while the variable functions can be used only after they are defined
 - Control Flow
   - `if (cond1) { ... } else if(cond2) { ... } else { ... }` - if, else if and else conditional eval, same as C / C++ / C#
   - `while (cond) { ... }` - loops while `cond` is true
@@ -271,5 +273,53 @@
     - methods are defined by `name (params)`
     - `this` represents the object inside methods
     - new instances are created by `new ClassName(params)`
+    - properties and methods starting with # are private and cannot be used outside of the class (including child classes)
+      - protected is not supported
     - classes can inherit other classes and extend their behavior
-    
+      ```JS
+      class Child extends Class {
+          #num
+          
+          constructor(id, num) {
+              super(id)
+              this.#num = num
+          }
+
+          log() { 
+              super.log()
+              console.log(this.#num)
+          }
+      }
+      ```
+      - Parent defined by the `extends` keyword, only one is allowed
+      - Child has access to all public parent properties and methods
+      - new properties and methods can be defined
+      - constructor can call parent constructor by `super(parameters)`
+        - cals parent constructor if none is defined in the child
+      - methods of the child class override parent methods of the same name
+        - only the name is considered, parameters are ignored
+        - parent method can be called by using `super.` prefix
+- Script Loading
+  - JS scripts can be included using tag `<script> CODE </script>`
+    - code can be loaded from a file using `<script src="FILE_PATH>`
+    - code can be also loaded from the web using `<script src="SCRIPT_URL>`
+      - external libraries can be loaded this way (for example [dayjs](https://unpkg.com/dayjs@1.11.10/dayjs.min.js))
+  - Code can be included directly in the properties like `<button onclick=" CODE ">`
+  - inlining code is not good for larger projects and even element events are better defined in JS code
+    - for example click can be set using `element.addEventListener('click', event => func(event))`
+  - code is gathered on the site level and all the sources are combined in the order they are included
+    - variables and functions are defined in the order they are included
+    - conflicts are possible
+- Modules
+  - replace loading scripts directly
+  - only the main script is loaded by `<script type="module" src="FILE_PATH / FILE_URL"></script>`
+  - the main script imports what it needs from JS modules using
+    - `import {variable, function, Class} from 'MODULE_PATH'`
+      - all imported symbols must be defined with `export` prefix
+    - `import str from './main.js'`
+      - imports the default export
+      - default export is defined by `export default SYMBOL`
+      - default export can be only one and is defined after the symbol is defined (usually at the end)
+  - variables, functions and classes can be exported
+  - modules do not work with HTML files opened directly in the browser, they need Live Server or other server setup (cross site scripting errors show up)
+  - external libraries must be inmported only with the ESM (Ecma Script Module) format (for example [dayjs ESM](https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js))

@@ -1,4 +1,6 @@
-import {hello} from './main.js'
+import {hello, Storage} from './main.js'
+import str from './main.js'
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'
 
 class Class {
     id
@@ -16,8 +18,29 @@ class Class {
     log() { this.#log() }
 }
 
-const cls = new Class('hello')
+class Child extends Class {
+    #num
+
+    constructor(id, num) {
+        super(id)
+        this.#num = num
+    }
+
+    log(x=1) { 
+        super.log()
+        console.log(this.#num)
+        console.log(x)
+    }
+}
+
+console.log(dayjs())
+console.log(hello())
+console.log(str)
+console.log(new Storage())
+
+const cls = new Child('hello', 5)
 cls.log()
+console.log(cls)
 
 const response = await new Promise((resolve,reject) => {
     const req = new XMLHttpRequest()
