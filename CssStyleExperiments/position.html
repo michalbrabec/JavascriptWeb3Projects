@@ -3,6 +3,58 @@
 <html>
     <head>
         <title>Position</title>
+        <style>
+            .option {
+                flex: 1; 
+                background: yellow; 
+                position: relative;
+                cursor: pointer;
+                display: block;
+            }
+
+            .tooltip {
+                position: absolute;
+                background-color: lightgray;
+                padding: 5px 15px;
+                border-radius: 5px;
+                visibility: hidden; /* hides tooltip */
+                pointer-events: none; /* disables mouse events for tooltip */
+                transition-delay: 0s; /* hides the tooltip once cursor moves away */
+            }
+
+            .option:hover .tooltip {
+                visibility: visible;  /* shows tooltip */
+                transition-delay: 0.3s; /* delays the tooltip showing up */
+            }
+
+            .menu { 
+                flex-direction: column;
+                position: absolute;
+                background-color: lightgray;
+                padding: 10px 5px;
+                border-radius: 5px;
+                gap: 5px;
+                left: 0;
+                right: 0;
+                top: -200px;
+                display: flex;
+                visibility: hidden; /* hides menu */
+                /*opacity: 0; /* used for gradual transition */
+                transition: top 1s, visibility 1s; /* both must transition for show and hide transitions */
+
+                z-index: -1;
+            }
+
+            .option:hover .menu {
+                visibility: visible; /* shows menu */
+                top: 30px;
+            }
+
+            .item {
+                font-size: 20px;
+                text-align: left;
+            }
+            </style>
     </head>
     <body style="
         height: 1000px;
@@ -27,11 +79,19 @@
             <div style="flex: 1; background: red;">
                 TEST
             </div>
-            <div style="flex: 1; background: yellow;">
-                TEST
+            <div class="option">
+                TOOLTIP
+                <div class="tooltip">
+                    Tooltip
+                </div>
             </div>
-            <div style="flex: 1; background: red;">
-                TEST
+            <div class="option" style="flex: 1; background: red; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                <div>MENU</div>
+                <div class="menu">
+                    <button class="item" onclick="alert('Option1')">Option1</button>
+                    <button class="item" onclick="alert('Option2')">Option2</button>
+                    <button class="item" onclick="alert('Option3')">Option3</button>
+                </div>
             </div>
         </header>
         <nav style="
