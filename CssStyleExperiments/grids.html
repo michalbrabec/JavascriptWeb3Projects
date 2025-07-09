@@ -1,17 +1,37 @@
 <!DOCTYPE html>
+<!-- CSS grids and responsive design through media queries -->
 <html>
     <head>
         <title>Grids</title>
+        <style>
+            #ID {
+                display: grid;
+                grid-template-columns: 100px 1fr 2fr 50px;
+                background-color: lightgray;
+                column-gap: 5px;
+                row-gap: 10px;
+                padding: 10px;
+            }
+
+            @media (max-width: 400px) {
+                #ID {
+                    grid-template-columns: 100px 1fr
+                }
+            }
+            @media (min-width: 400px) and (max-width: 600px) {
+                #ID {
+                    grid-template-columns: 100px 1fr 2fr;
+                }
+            }
+            @media (min-width: 600px) {
+                #ID {
+                    grid-template-columns: 100px 1fr 2fr 50px;
+                }
+            }
+        </style>
     </head>
     <body>
-        <div style="
-            display: grid;
-            grid-template-columns: 100px 1fr 2fr 50px;
-            background-color: lightgray;
-            column-gap: 5px;
-            row-gap: 10px;
-            padding: 10px;
-        ">
+        <div id="ID">
             <div style="background-color: lightblue;">
                 test
                 <p>TEST</p>

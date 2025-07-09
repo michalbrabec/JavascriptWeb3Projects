@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- CSS positions and semantic elements -->
+<html>
+    <head>
+        <title>Position</title>
+    </head>
+    <body style="
+        height: 1000px;
+        margin: 35px 0 0 65px;
+    ">
+        <header style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: gray;
+            gap: 10px;
+            padding: 0 20px;
+
+            z-index: 100;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+        ">
+            <div style="flex: 1; background: red;">
+                TEST
+            </div>
+            <div style="flex: 1; background: yellow;">
+                TEST
+            </div>
+            <div style="flex: 1; background: red;">
+                TEST
+            </div>
+        </header>
+        <nav style="
+            display: flex;
+            flex-direction: row;
+            background-color: gray;
+            gap: 10px;
+            align-items: center;
+            padding: 20px 0;
+
+            z-index: 200;
+
+            position: fixed;
+            left: 0;
+            top: 20px;
+            bottom: 0;
+            width: 60px;
+
+            writing-mode:sideways-rl;
+        ">
+            <div style="flex: 1; background: aqua;">
+                TEST
+            </div>
+            <div style="flex: 1; background: gold;">
+                TEST
+            </div>
+            <div style="flex: 1; background: lawngreen;">
+                TEST
+            </div>
+        </nav>
+        <main style="
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 10px;
+            position: static; /* default value */
+        ;">
+            <div style="background-color: lightblue;position: static;">
+                test
+                <p>TEST</p>
+                <div style="
+                    background-color: orange; 
+                    position: absolute; /* ignores static parent */
+                    top: 25px;
+                    left: 50px;
+                ">TIME</div>
+            </div>
+            <div style="background-color: lightgreen;position: relative;">
+                test
+                <div style="
+                    background-color: orange; 
+                    position: absolute; /* relative to a relative parent */
+                    top: 25px;
+                    left: 50px;
+                ">TIME</div>
+            </div>
+            <div style="background-color: lightblue;">
+                test
+            </div>
+        </main>
+    </body>
+</html>
