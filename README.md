@@ -323,3 +323,32 @@
   - variables, functions and classes can be exported
   - modules do not work with HTML files opened directly in the browser, they need Live Server or other server setup (cross site scripting errors show up)
   - external libraries must be inmported only with the ESM (Ecma Script Module) format (for example [dayjs ESM](https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js))
+
+## Node Notes
+
+## NPM Notes
+
+- Setup
+  - `npm --init` sets up boilerplate `package.json`
+- Package
+  - defined by `package.json`
+    - contains info about the package
+    - can contain built, test, start and other scripts defined in the object `scripts`
+    - commands are started by `npm run COMMAND_NAME param1 param2 ...`
+      - parameters are passed in the `process.argv[]` starting at index 2
+      - start can be used by `npm start`
+
+## TypeScript Notes
+
+- Setup
+  - `npm i typescript -g` installs the compiler globally
+    - local (dev) version can be used with `npx` to avoid global setup
+  - `tsc --init` sets up boilerplate `tsconfig.json`
+- Config
+  - the compiler compiles all `*.ts` files in the subdirectories
+  - `tsconfig.json` controls the behavior
+  - `sourceMap`is necessary for debugging
+  - `outDir` specifies the JS output
+  - `tsc --listFiles --noEmit` lists all files that will be compiled
+
+## Solidity Notes

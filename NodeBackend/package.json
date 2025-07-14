@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index 3000 55"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michalbrabec/JavascriptWeb3Projects.git"
+  },
+  "author": "Michal Brabec",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michalbrabec/JavascriptWeb3Projects/issues"
+  },
+  "homepage": "https://github.com/michalbrabec/JavascriptWeb3Projects#readme",
+  "description": "",
+  "dependencies": {
+    "fs.promises": "^0.1.2",
+    "http": "^0.0.1-security",
+    "url": "^0.11.4"
+  }
+}

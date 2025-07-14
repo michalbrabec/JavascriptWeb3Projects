@@ -1,0 +1,12 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node script/index",
+    "brick": "node console.log('brick')"
+  },
+  "author": "Michal Brabec",
+  "license": "ISC",
+  "description": ""
+}

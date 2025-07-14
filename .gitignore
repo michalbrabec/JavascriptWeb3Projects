@@ -1,1 +1,3 @@
 **/.DS_Store
+typescript/scripts/**
+**/node_modules/**
