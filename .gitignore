@@ -5,3 +5,4 @@ typescript/scripts/**
 **/*.bin
 **/.env
 **/generated
+.vscode/*
