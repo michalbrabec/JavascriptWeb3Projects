@@ -329,7 +329,7 @@
 ## NPM Notes
 
 - Setup
-  - `npm --init` sets up boilerplate `package.json`
+  - `npm init` sets up boilerplate `package.json`
 - Package
   - defined by `package.json`
     - contains info about the package

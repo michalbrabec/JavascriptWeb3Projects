@@ -1,3 +1,7 @@
 **/.DS_Store
 typescript/scripts/**
 **/node_modules/**
+**/*.abi
+**/*.bin
+**/.env
+**/generated
