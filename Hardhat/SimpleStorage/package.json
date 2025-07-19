@@ -1,0 +1,18 @@
+{
+  "name": "simplestorage",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "tsc && node generated/deploy"
+  },
+  "keywords": [],
+  "author": "Michal Brabec",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/node": "^24.0.14"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "hardhat": "^2.26.0"
+  }
+}
