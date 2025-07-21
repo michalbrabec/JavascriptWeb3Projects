@@ -1,9 +1,11 @@
 **/.DS_Store
 typescript/scripts/**
-**/node_modules/**
+**/node_modules
 **/build/**
 **/*.abi
 **/*.bin
 **/.env
 **/generated
 .vscode/*
+**/artifacts
+**/cache
