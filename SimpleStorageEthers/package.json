@@ -1,0 +1,21 @@
+{
+  "name": "simplestorage",
+  "version": "1.0.0",
+  "main": "deploy.js",
+  "scripts": {
+    "start": "tsc; node generated/deploy",
+    "compile": "npx solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol"
+  },
+  "author": "michal",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "ethers": "^6.15.0",
+    "ethers-ts": "^5.5.3",
+    "fs-extra": "^11.3.0",
+    "solc": "0.8.7-fixed",
+    "ts-node": "^10.9.2"
+  }
+}
