@@ -1,18 +1,21 @@
 {
   "name": "simplestorage",
   "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "tsc && node generated/deploy"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Michal Brabec",
+  "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@types/node": "^24.0.14"
-  },
+  "type": "commonjs",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^6.1.0",
-    "hardhat": "^2.26.0"
+    "@nomicfoundation/hardhat-verify": "^2.1.0",
+    "dotenv": "^17.2.0",
+    "hardhat": "^2.26.1",
+    "hardhat-gas-reporter": "^2.3.0",
+    "solidity-coverage": "^0.8.16"
   }
 }

@@ -7,5 +7,7 @@ typescript/scripts/**
 **/.env
 **/generated
 .vscode/*
-**/artifacts
-**/cache
+**/artifacts/
+**/cache/
+**/coverage.json
+**/coverage/
