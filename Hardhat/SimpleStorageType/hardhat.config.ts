@@ -1,9 +1,11 @@
-require("@nomicfoundation/hardhat-toolbox");
-require("@nomicfoundation/hardhat-verify")
-require('./tasks/accounts.js')
-require('hardhat-gas-reporter')
-require('solidity-coverage')
-require('dotenv').config()
+import "@nomicfoundation/hardhat-toolbox"
+import "@nomicfoundation/hardhat-verify"
+import './tasks/accounts'
+import 'hardhat-gas-reporter'
+import 'solidity-coverage'
+import 'dotenv/config'
+import '@nomicfoundation/hardhat-ethers'
+import '@typechain/hardhat'
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {

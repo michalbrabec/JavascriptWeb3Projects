@@ -11,3 +11,4 @@ typescript/scripts/**
 **/cache/
 **/coverage.json
 **/coverage/
+**/typechain-types

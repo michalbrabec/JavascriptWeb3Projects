@@ -1,7 +1,8 @@
-const { ethers, run, network } = require("hardhat")
+import { ethers, run, network } from "hardhat"
+import { Contract } from 'ethers'
 
-async function wait(ms) {
-    return new Promise(res => setTimeout(res, ms))
+async function wait(ms: number) {
+    return new Promise<void>(res => setTimeout(res, ms))
 }
 
 async function main() {
@@ -13,10 +14,8 @@ async function main() {
     const deployedContract = await simpleStorage.waitForDeployment()
     console.log(deployedContract)
     console.log(`SimpleStorage deployed as ${await simpleStorage.getAddress()}`)
-    if (network.name === 'sepolia' && process.env.ETHERSCAN_API_KEY) {
-        const receipt = await deployedContract.deploymentTransaction().wait(5, 60e3)
-        console.log(receipt)
-        await verify(await simpleStorage.getAddress(), [])
+    if (network.name === 'sepolia') {
+        await verify(simpleStorage, [])
     }
 
     const favoriteNumber = await simpleStorage.retrieve()
@@ -30,16 +29,22 @@ async function main() {
     console.log(await simpleStorage.retrieve())
 }
 
-async function verify(contractAddress, args) {
+async function verify(contract: Contract, args: (string | number)[]): Promise<void> {
     try {
+        const contractAddress: string = await contract.getAddress()
+        console.log(`Verifying ${contractAddress}`)
+        if (!process.env.ETHERSCAN_API_KEY) { throw Error("Etherscan API key missing") }
+        if (!contract.deploymentTransaction()) { throw Error("Contract deployment failed") }
+        const receipt = await contract.deploymentTransaction()!.wait(5, 60e3)
+        console.log(receipt)
         await run("verify:verify", {
             address: contractAddress,
             constructorArguments: args,
         })
         console.log(contractAddress + " verified")
     }
-    catch(e) {
-        if (e.message.toLowerCase().includes("already verified")) {
+    catch(e: any) {
+        if (e.message.toLowerCase().includes("already been verified")) {
             console.log("Already verified")
         }
         else {
