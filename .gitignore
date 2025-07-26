@@ -12,3 +12,4 @@ typescript/scripts/**
 **/coverage.json
 **/coverage/
 **/typechain-types
+**/ignition/deployments/
