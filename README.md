@@ -1,0 +1,6 @@
+- `npx hardhat node`
+- `npx hardhat ignition deploy ignition/modules/FundMeModule.ts --parameters ignition/parameters.json --network localhost`
+- Open `index.html` with Live Server
+- Install Metamask
+- Import hardhat network account (copy private key from the `node` command output)
+- Add network to Metamask (get RPC URL from the `node` command output and chainid 31337)
