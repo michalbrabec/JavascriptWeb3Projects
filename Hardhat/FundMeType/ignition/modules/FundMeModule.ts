@@ -4,6 +4,7 @@ import { priceFeeds } from "../../hardhat.config";
 import { network } from "hardhat";
 
 // npx hardhat ignition deploy ignition/modules/FundMeModule.ts --parameters ignition/parameters.json --network sepolia --verify
+// npx hardhat ignition deploy ignition/modules/FundMeModule.ts --parameters ignition/parameters.json --network localhost
 
 export default buildModule("FundMeModule", (m) => {
   const deployer = m.getAccount(1);
@@ -11,7 +12,7 @@ export default buildModule("FundMeModule", (m) => {
   const mock = priceFeeds[network.name]?
     m.contractAt("AggregatorV3Interface", priceFeeds[network.name]):
     m.contract("AggregatorV3Mock", [BigInt("300000000000")], {
-        from: deployer,
+        from: deployer
       });
 
   const priceFeed = m.library("PriceFeed", {
@@ -25,7 +26,7 @@ export default buildModule("FundMeModule", (m) => {
     }
   })
 
-  const minFunding = m.call(fundme, "MIN_FUNDING_USD", [], {
+  const minFunding = m.call(fundme, "MIN_FUNDING_CENT", [], {
     from: deployer,
   })
   const latest = m.call(mock, "latestRoundData", [], {

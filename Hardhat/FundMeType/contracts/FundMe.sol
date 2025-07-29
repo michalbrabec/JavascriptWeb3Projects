@@ -15,11 +15,14 @@ error WithdrawlFailed();
 contract FundMe {
     using PriceFeed for uint256;
 
+    event Funded(address indexed _from, uint256 _value);
+    event Withdrawn(address indexed _by, uint256 _value);
+
     /// @notice Contract owner
     address public immutable OWNER;
 
     /// @notice Minimal funding in USD accepted by the contract
-    uint256 public immutable MIN_FUNDING_USD;
+    uint256 public immutable MIN_FUNDING_CENT;
 
     /// @notice ETH USD price feed
     address public immutable PRICE_FEED;
@@ -35,16 +38,16 @@ contract FundMe {
     /// @param _priceFeedAddress Address of the ETH USD price feed oracle node
     constructor (uint256 _minUsdFunding, address _priceFeedAddress) {
         OWNER = msg.sender;
-        MIN_FUNDING_USD = _minUsdFunding*100;
+        MIN_FUNDING_CENT = _minUsdFunding*100;
         PRICE_FEED = _priceFeedAddress;
     }
 
     /// @notice Fund contract and record the sender
     function fund() public payable {
         uint256 valueUsd = msg.value.ethToUsdCents(PRICE_FEED);
-        console.log("Contract log - ", msg.value);
-        console.log("Contract log - ", valueUsd);
-        if (valueUsd < MIN_FUNDING_USD) {
+        console.log("Contract log - value ", msg.value);
+        console.log("Contract log - USD value ", valueUsd);
+        if (valueUsd < MIN_FUNDING_CENT) {
             revert InsuffiecientFunds();
         }
 
@@ -53,18 +56,26 @@ contract FundMe {
             s_funders.push(funder);
         }
         s_funding[funder] += msg.value;
+        emit Funded(msg.sender, msg.value);
     }
 
     /// @notice Withdraw all funds from the contract and clear funders
     function withdraw() public onlyOwner {
+        uint256 balance = address(this).balance;
         for (uint256 i = 0; i < s_funders.length; ++i) {
             s_funding[s_funders[i]] = 0;
         }
         s_funders = new address[](0);
-        (bool result, ) = payable(msg.sender).call{value: address(this).balance}("");
+        (bool result, ) = payable(msg.sender).call{value: balance}("");
         if (!result) {
             revert WithdrawlFailed();
         }
+
+        emit Withdrawn(msg.sender, balance);
+    }
+
+    function getMinFundingWei() public view returns(uint256) {
+        return MIN_FUNDING_CENT.usdCentsToEth(PRICE_FEED);
     }
 
     /// @notice Redirect to `fund`
@@ -79,6 +90,8 @@ contract FundMe {
 
     modifier onlyOwner {
         if (msg.sender != OWNER) {
+            console.log("Contract log - sender ", msg.sender);
+            console.log("Contract log - owner ", OWNER);
             revert UnauthorizedAccess();
         }
         _;

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FundMe DAPP</title>
+    <style>
+        html {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+        }
+
+        .button {
+            border: none;
+            margin: 0.1rem 0;
+            padding: 0rem 1rem;
+            background-color: black;
+            border: 1px solid transparent;
+            color: white;
+            border-top-right-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+            cursor: pointer;
+            user-select: none;
+            font-size: 1rem;
+        }
+
+        .button:active {
+            background-color: gray;
+            border: 1px solid black;
+        }
+
+        .button_text {
+            user-select: none;
+        }
+
+        .disabled_button {
+            margin: 0.1rem 0;
+            padding: 0rem 1rem;
+            background-color: rgb(232, 230, 230);
+            color: gray;
+            border: 1px solid black;
+            border-top-right-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+            user-select: none;
+        }
+
+        #connect {
+            border-radius: 2rem;
+            font-size: 1rem;
+            padding: 0.2rem 0.7rem;
+            flex: none;
+        }
+
+        .textbox {
+            border: solid black;
+            border-width: 1px 0 1px 1px;
+            min-width: 10rem;
+            margin: 0.1rem 0;
+            padding: 0.1rem 0 0.1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 1.2rem;
+
+            border-top-left-radius: 2rem;
+            border-bottom-left-radius: 2rem;
+            flex: 2;
+            font-size: 1rem;
+        }
+
+        .flexbutton {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        div.flexcolumn {
+            display: flex;
+            flex-direction: column;
+            /* border: solid; */
+        }
+
+        div.flexrow {
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+            /* border: solid; */
+        }
+
+        .input {
+            padding: 0;
+            margin: 0;
+            font-size: 1rem;
+            font-family: 'Times New Roman', Times, serif;
+            outline: none;
+            border: none;
+        }
+
+        .message {
+            border: none;
+            color: red;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flexcolumn">
+        <div class="flexrow">
+            <div class="textbox message" id="message"></div>
+            <div class="flexbutton disabled_button" id="connect">
+                <div class="button_text">Connect</div>
+            </div>
+        </div>
+        <div class="flexrow">
+            <div class="textbox">
+                <div id="balance"></div>
+            </div>
+            <div class="flexbutton disabled_button" id="getBalance">Get Balance</div>
+        </div>
+        <div class="flexrow">
+            <div class="textbox">
+                <div id="owner"></div>
+            </div>
+            <div class="flexbutton disabled_button" id="getOwner">Get Owner</div>
+        </div>
+        <div class="flexrow">
+            <div class="textbox">
+                <div id="minFunding"></div>
+            </div>
+            <div class="flexbutton disabled_button" id="getMinFunding">Get Min Funding</div>
+        </div>
+        <div class="flexrow">
+            <div class="textbox"> 
+                <input class="input" type="number" id="funding" placeholder="Funding (ETH)">
+            </div>
+            <div class="flexbutton disabled_button" id="fund">Fund</div>
+        </div>
+        <div class="flexrow">
+            <div class="textbox message"></div>
+            <div class="flexbutton disabled_button" id="withdraw">Withdraw</div>
+        </div>
+    </div>
+
+    <script src="./index.js" type="module"></script>
+</body>
+
+</html>

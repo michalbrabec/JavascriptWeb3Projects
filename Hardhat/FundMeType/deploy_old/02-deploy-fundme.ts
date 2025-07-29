@@ -21,7 +21,7 @@ export default async function deployments(hre: HardhatRuntimeEnvironment): Promi
     
     const signer = await hre.ethers.getSigner(deployer)
     const contract: FundMe = await hre.ethers.getContractAt("FundMe", fundMe.address, signer)
-    console.log(await contract.MIN_FUNDING_USD())
+    console.log(await contract.MIN_FUNDING_CENT())
 
     if (network.name !== "hardhat" && network.name !== "localhost") {
         await verify(contract, args)
