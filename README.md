@@ -352,3 +352,6 @@
   - `tsc --listFiles --noEmit` lists all files that will be compiled
 
 ## Solidity Notes
+
+## Git Notes
+- git subtree push --prefix Hardhat/FundMeType/frontend origin gh-pages
